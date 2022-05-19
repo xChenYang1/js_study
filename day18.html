@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        //面试题
+       /* console.log(a,b,c);
+        var a = 10;
+            b = 20;
+            c = 30;
+            function f(a){
+                console.log(a,b,c);
+                var b = a = c = 100;
+                console.log(a,b,c);
+            }
+            f(10,20);
+            console.log(a,b,c);
+            */
+
+        //伪代码
+        function f(a){
+            var b;
+            console.log(a,b,c);//10 undefined 30
+            b = a = c =100;
+            console.log(a,b,c);//100  100   100
+        }
+        var a ;
+        var b ;
+        var c ;
+        console.log(a,b,c);//undefined undefined undefined
+        a = 10;
+        b = 20;
+        c = 30;
+
+        f(10,20);
+        console.log(a,b,c); //10 20 100
+                //淘宝面试题
+        /* console.log(num, str);//undefined undefined
+         var num = 18;
+         var str = "lily";
+         function fn2() {
+             console.log(str, num);//lily undefined
+             num = 19;
+             str = "candy";
+             var num = 14;
+             console.log(str, num);//candy 14
+        }
+         fn2();
+         console.log(str, num);//candy 18
+         */
+
+        //伪代码
+        function fn2(){
+            var num;
+            console.log(str,num);
+            num = 19;
+            str = "candy";
+            num = 14;
+            console.log(str,num);
+        }
+        var num;
+        var str;
+        console.log(num,str);
+        num = 18;
+        str = "lily";
+
+        fn2();
+        console.log(str,num);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

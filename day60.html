@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            user-select: none;
+        }
+        ul,
+        ol {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+        div>a{
+            display: none;
+        }
+        #box {
+            width: 900px;
+            height: 350px;
+            margin: 100px auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #box ul {
+            /*这样就能放下里面所有的图了*/
+            width: 9999px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        #box ul li {
+            float: left;
+        }
+
+        #box ol {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+
+        #box ol li {
+            float: left;
+            width: 20px;
+            height: 20px;
+            color: #999;
+            background-color: #333;
+            border: 1px solid #fff;
+            text-align: center;
+            line-height: 20px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+
+        #box ol li.current {
+            color: #f40;
+            border: 1px solid #f40;
+        }
+        #box ol li:hover{
+            border: 1px solid #f40;
+        }
+        #left,
+        #right {
+            position: absolute;
+            width: 40px;
+            height: 80px;
+            line-height: 80px;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            top: 50%;
+            margin-top: -40px;
+            font-size: 50px;
+            color: #fff;
+        }
+
+        #left {
+            left: 0;
+        }
+
+        #right {
+            right: 0;
+        }
+
+        img {
+            width: 900px;
+        }
+    </style>
+    <script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
+    <script>
+        $(function () {
+            // 我们首先定义全局变量
+            var $key = 0;//控制图片的播放
+            var $circle = 0;//这个变量控制有序列表的（因为图片和有序列表个数不一样）
+            var speed = 500;//设置动画时间的
+            $("#right").click(function () {
+                $key++;//因为我们在第一张，点击就开始播放下一张
+                console.log($key);
+                $circle++
+                // 判断
+                if ($key > $('img').length-1) {
+                    // alert("走完了")
+                    $key = 1;//因为我们到了第六张图，其实按道理我们下次看应该是第二张图，所以 $key = 1
+                    $("#box ul").css("left", 0);//快速回复到原来的位置
+                }
+                if ($circle > 4) {
+                    $circle = 0;
+                }
+
+                $("#box ul").stop().animate({ "left": -$key * 900 }, speed);
+                $('ol>li').eq($circle).addClass('current').siblings().removeClass('current');
+            })
+            $("#left").click(function () {
+                $key--;//因为我们在第一张，点击就开始播放下一张
+                console.log($key);
+                $circle--;
+                // 判断
+                if ($key < 0) {
+                    // alert("走完了")
+                    $key = $('img').length - 2;//因为我们到了第六张图，其实按道理我们下次看应该是第二张图，所以 $key = 1
+                    $("#box ul").css("left", -($key + 1) * 900);//快速回复到原来的位置
+                }
+                if ($circle < 0) {
+                    $circle = $('img').length - 2;
+                }
+
+                $("#box ul").stop().animate({ "left": -$key * 900 }, speed);
+                $('ol>li').eq($circle).addClass('current').siblings().removeClass('current');
+            })
+            // 绑定点击事件
+            $('ol>li').click(function () {
+                // 被点击时 获取被点击的li的下标 并保存
+                $key = $(this).index();
+                $circle = $key;
+                console.log($key);
+                // 移动到相应的位置
+                $('#box ul').stop().animate({ "left": -$key * 900 }, speed);
+                // 改变小圆点的样式
+                $('ol>li').eq($(this).index()).addClass('current').siblings().removeClass('current');
+
+            })
+            // 绑定计时器
+            let timer = setInterval(autoplay,2000);
+            function autoplay(){
+                $key++;//因为我们在第一张，点击就开始播放下一张
+                $circle++
+                console.log($key);
+                // 判断
+                if ($key > $('img').length-1) {
+                    // alert("走完了")
+                    $key = 1;//因为我们到了第六张图，其实按道理我们下次看应该是第二张图，所以 $key = 1
+                    $("#box ul").css("left", 0);//快速回复到原来的位置
+                }
+                if ($circle > 4) {
+                    $circle = 0;
+                }
+
+                $("#box ul").stop().animate({ "left": -$key * 900 }, speed);
+                $('ol>li').eq($circle).addClass('current').siblings().removeClass('current');
+            }
+            // 鼠标移入事件
+            $('div').mouseenter(function(){
+                clearInterval(timer);
+                time = null;
+                $('div>a').show()
+            })
+            // 鼠标移出事件
+            $('div').mouseleave(function(){
+                clearInterval(timer);
+                timer = setInterval(autoplay,2000);
+                $('div>a').hide();
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div id="box">
+        <a href="javascript:;" id="left">&lt;</a>
+        <a href="javascript:;" id="right">&gt;</a>
+        <ul>
+            <li>
+                <a href="#"><img src="https://s11.snscz.com/s12/img/1200/2021/01/03/20/14004_605516b123.jpg"
+                        alt="" /></a>
+            </li>
+            <li>
+                <a href="#"><img src="https://s11.snscz.com/s12/img/1200/2020/12/12/12/14004_568c57c99c.jpg"
+                        alt="" /></a>
+            </li>
+            <li>
+                <a href="#"><img src="https://s2.azz.net/img/1200/2020/12/02/11/14004_cfd3107e87.jpg" alt="" /></a>
+            </li>
+            <li>
+                <a href="#"><img src="https://s2.azz.net/img/1200/2020/11/01/11/14004_5e2dd87114.jpg" alt="" /></a>
+            </li>
+            <li>
+                <a href="#"><img src="https://s2.azz.net/img/1200/2020/09/12/13/14004_a3e28599e7.jpg" alt="" /></a>
+            </li>
+            <li>
+                <a href="#"><img src="https://s11.snscz.com/s12/img/1200/2021/01/03/20/14004_605516b123.jpg"
+                        alt="" /></a>
+            </li>
+        </ul>
+        <ol>
+            <li class="current">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+        </ol>
+    </div>
+</body>
+
+</html>

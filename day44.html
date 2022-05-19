@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 5000px;
+        }
+
+        button {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+
+        h1 {
+            position: fixed;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        // 创建构造函数
+        function Person(name) {
+            this.name = name;
+        }
+        // 创建Person原型 并添加函数
+        Person.prototype.eat = function () {
+            console.log("吃东西");
+        }
+        // 创建Student构造函数
+        function Student(score) {
+            this.score = score;
+        }
+        // 原型链继承
+        // 注意 在继承时已经向父类传递了参数 此时属于Student的属性 无法被修改
+        // 所以 下面实例化的时候也无法传递参数
+        Student.prototype = new Person('小明');
+        // 创建Student原型 并添加函数
+        Student.prototype.play = function () {
+            console.log('玩');
+        };
+        // 实例化对象
+        let stu = new Student(90);
+        console.log(stu.score);
+        stu.play();
+        stu.eat();
+
+        // 解决方法来源于网上
+        // 解决 子类无法向父类传递参数的问题
+        // 创建构造函数
+        function Parent(name) { this.name = name; }
+        // 将Parent封装起来 同时加入Child的构造函数 
+        // call（）它可以用来调用所有者对象作为参数的方法。
+        function Child(age, name) { Parent.call(this, name); this.age = age; }
+        // 原型链继承
+        Child.prototype = new Parent();
+        // 实例化对象
+        // 此时可以向父类构造函数传递参数
+        let c1 = new Child(1, 'Hello');
+
+        console.log(c1.age + '...' + c1.name);
+    </script>
+</body>
+
+</html>

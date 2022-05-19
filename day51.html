@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // function fun(){
+        //     console.log(1);
+        //     return 
+        // }
+        // let fun1 = fun();
+        // console.log(fun1);
+
+        // 开辟一块空间 创建arr 并绑定一个地址0x11
+        var arr = [1,2,3,4];
+        // 重新开辟另一块空间 并传入一个arr（复制一份arr的地址）
+        function fun(arr){
+            // 修改0x11中的[0] = 5
+            arr[0] = 5;
+            // 直接修改arr的指向为0x12 为[0]
+            arr = [0];
+            // 让 0x12 中的[0]=6
+            arr[0] = 6
+            console.log(arr);
+            return arr
+        }
+        var res = fun(arr);
+        console.log(res);
+        // 这里arr的指向并未被改变
+        console.log(arr);
+
+
+        // 此时两种情况结果不同
+        function fun1(){
+            arr[0] = 5;
+            arr = [0];
+            arr[0] = 6
+            console.log(arr);
+            return arr
+        }
+        var res = fun1();
+        console.log(res);
+        // 这类arr的指向被改变了
+        console.log(arr);
+
+        function Person(){
+            if(Person._instance){
+                console.log('之前已经创建过了');
+                return Person._instance;
+            }
+            Person._instance = this;
+            console.log('创建了对象');
+        }
+        var p1 = new Person();
+        var p2 = new Person();
+        console.log(p1 == p2);
+    </script>
+</body>
+</html>

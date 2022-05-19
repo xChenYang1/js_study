@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>哈哈,我又变帅了</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        ul,li{
+            list-style: none;
+        }
+
+        body {
+            /* background-image: url("images/1.jpg"); */
+            background-attachment: fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .wrap{
+            margin: 100px auto;
+            width: 500px;
+            height: 500px;
+            border: 1px rgb(224, 224, 224) solid;
+            text-align: center;
+            
+        }
+        .fir{
+            background-color: rgb(0, 132, 255);
+        }
+        .checkbox{
+            margin: 0 auto;
+            width: 25px;
+            height: 25px;
+        }
+        input{
+            width: 25px;
+            height: 25px;
+        }
+        .fir td p{
+            font-size: 25px;
+            font-weight: bolder;
+            color: white;
+        }
+        .oth td p{
+            font-size: 25px;
+            /* font-weight: bolder; */
+            /* color: white; */
+        }
+    </style>
+</head>
+<body>
+    <table class="wrap" border="1" cellspacing="0"  >
+        <tr class="fir" height="100" >
+            <td width="120" >
+                <div class="checkbox">
+                    <input class="btn1" type="checkbox" >
+                </div>
+            </td>
+            <td>
+                <p>菜名</p>
+            </td>
+            <td>
+                <p>饭名</p>
+            </td>
+        </tr>
+        <tr class="oth" height="100" >
+            <td width="120" >
+                <div class="checkbox">
+                    <input class="btn" type="checkbox">
+                </div>
+            </td>
+            <td>
+                <p>菜名</p>
+            </td>
+            <td>
+                <p>饭名</p>
+            </td>
+        </tr>
+        <tr class="oth" height="100" >
+            <td width="120" >
+                <div class="checkbox">
+                    <input class="btn" type="checkbox">
+                </div>
+            </td>
+            <td>
+                <p>菜名</p>
+            </td>
+            <td>
+                <p>饭名</p>
+            </td>
+        </tr>
+        <tr class="oth" height="100" >
+            <td width="120" >
+                <div class="checkbox">
+                    <input class="btn" type="checkbox">
+                </div>
+            </td>
+            <td>
+                <p>菜名</p>
+            </td>
+            <td>
+                <p>饭名</p>
+            </td>
+        </tr>
+        <tr class="oth" height="100" >
+            <td width="120" >
+                <div class="checkbox">
+                    <input class="btn" type="checkbox">
+                </div>
+            </td>
+            <td>
+                <p>菜名</p>
+            </td>
+            <td>
+                <p>饭名</p>
+            </td>
+        </tr>
+
+    </table>
+    <script src="publick.js"></script>
+    <script>
+        var btn = document.querySelectorAll('.btn');
+        var btn1 = document.querySelector('.btn1');
+        btn1.onclick = function(){
+            // 绑定一个点击事件 使所有其他按钮的状态与复选框状态相同
+            for (let i = 0; i < btn.length; i++) {
+                btn[i].checked = this.checked;
+            }
+        }
+
+        for (let i = 0; i < btn.length; i++) {
+            // 给所有其他按钮绑定点击事件
+            btn[i].onclick = function(){
+                // 绑定一个判断
+                var judge = true;
+                for (let i = 0; i < btn.length; i++) {
+                    // 如果有一个按钮的状态不为 被点击 ，则让复选框失去被点击效果
+                    if (!btn[i].checked) {
+                        // 只有没有被选中的按钮才会进入此判断
+                        // 被点击的按钮 条件判断永远为false 即-永远不会进入判断
+                        judge = false;
+                        break
+                    }
+                }
+                btn1.checked = judge;
+            }
+            
+        }
+
+
+                /* // 找到复选框按钮 绑定点击事件
+                btn1.onclick = function(){
+            // 判断复选框按钮的状态 并执行相应的操作
+            if(btn1.checked === false ) {
+                for (let i = 0; i < btn.length; i++) {
+                    btn[i].checked = false;
+                }
+            }else if(btn1.checked === true){
+                for (let i = 0; i < btn.length; i++) {
+                    btn[i].checked =  true;
+                }
+            }
+        }
+        // 给所有的其他按钮绑定点击事件
+        for (let i = 0; i < btn.length; i++) {
+            btn[i].onclick = function(){
+                // 判断所有的其他按钮是否被选中
+                if (btn[0].checked === true && btn[1].checked === true && btn[2].checked === true && btn[3].checked === true ) {
+                    // 如果所有的其他按钮被选中 则使复选框被选中
+                    btn1.checked = true;
+                }// 如果有一个按钮没有被选中
+                if (btn[i].checked === false) {
+                    // 则取消复选框
+                    btn1.checked = false;
+                }
+            }
+        }*/
+    </script>
+</body>
+</html>

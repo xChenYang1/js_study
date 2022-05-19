@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    </style>
+</head>
+<body>
+    <script>
+        for (let i = 0; i < 10; i++) {
+            var div = document.createElement('div');
+            div.innerHTML = `这是第${i+1}个div`;
+            document.querySelector('body').append(div);
+        }
+
+        let div1 = document.querySelectorAll('div');
+
+        // for (let i = 0; i < div1.length; i++) {
+        //     div1[i].onclick = (function(j){
+        //         return function(){
+        //             console.log(`这是第${j+1}个div`);
+        //         }
+        //     })(i)
+        // }
+
+        // for (let i = 0; i < div1.length; i++) {
+        //     (function(){
+        //         div1[i].onclick = function(){
+        //             console.log(`这是第${i+1}个div`);
+        //         }
+        //     })(i)
+        // }
+
+        // for (var i = 0; i < div1.length; i++) {
+        //     (function(j){
+        //         div1[i].onclick = function(){
+        //             console.log(`这是第${j+1}个div`);
+        //         }
+        //     })(i)
+        // }
+        for (let i = 0; i <6; i++) {
+            setTimeout(function(){
+                console.log(i);
+            },(5-i)*10)
+            
+        }
+    </script>
+</body>
+</html>

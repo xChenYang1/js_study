@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 5000px;
+        }
+
+        button {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+
+        h1 {
+            position: fixed;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        // 构造函数
+        function Person(name,age,sex){
+            this.name = name;
+            this.age = age;
+            this.sex = sex
+        }
+        // 制作原型
+        Person.prototype.sayhai = function(){
+            console.log('hello' + this.name);
+        }
+        // 实例化对象
+        let person = new Person('张三',20,'男');
+        // 对象中的方法（函数）
+        person.sayhai();
+
+        let person1 = new Person('李四',33,"男");
+        person1.sayhai();
+
+    </script>
+</body>
+
+</html>

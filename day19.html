@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机数获取装置</title>
+</head>
+<body>
+    <h1>输入一个数字 随机获取0到这个数之间的任意一个数</h1>
+    <input class="word" type="text" placeholder="请输入一个数字">
+    <button class="button"> 确定</button>
+    <p class="num"></p>
+    <script>
+        // 获取数值对象
+        var word = document.querySelector('.word');
+        var btn = document.querySelector('.button');
+        var xxx = document.querySelector('.num');
+
+        // 点击事件
+        btn.onclick = function(){
+        var value = word.value;
+        var y = value + 1;
+        var arr = [];
+        // 创建包含所有数字的数组对象
+        for (let i = 0; i < y; i++) {
+            arr[i] = i; 
+            
+        }
+        // 判断输入数字的位数
+        var z = String(value);
+
+        // 设置随机数的位置
+        zero = 1;
+        for (let i = 0; i < z.length; i++) {
+            zero += "0"
+            
+        }
+
+
+        // 判断这个数是否大于输入的数字 如果大于则重复一次
+        do {
+            var num = Math.random() *zero;
+            
+            num = Math.trunc(num);
+        } while (num > value);
+
+        // 输出
+        xxx.innerHTML = num;
+        }
+
+        
+
+
+    </script>
+</body>
+</html>

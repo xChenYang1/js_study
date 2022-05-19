@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="publick.css">
+    <style>
+        body {
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        #box {
+            margin: 300px auto;
+            width: 860px;
+            height: 310px;
+            border: #ccc 1px solid;
+        }
+
+        #box ul {
+            width: 860px;
+            margin: 0 10px 10px 0;
+
+        }
+
+        #box>ul>li {
+            margin: 10px 0 0 10px;
+            position: relative;
+            float: left;
+            width: 200px;
+            overflow: hidden;
+        }
+
+        #box>ul>li>img {
+            display: block;
+            width: 200px;
+            height: 140px;
+        }
+
+        #box>ul>li>div {
+            position: absolute;
+            bottom: -25px;
+            width: 200px;
+            height: 25px;
+            background-color: rgba(0, 0, 0, 0.513);
+
+            transition: .5s;
+        }
+
+        #box>ul>li>div>p {
+            display: block;
+            color: white;
+            text-align: center;
+            line-height: 25px;
+            background: url(images/bg.png) no-repeat 10px 0;
+        }
+
+        #box>ul>li:hover div {
+            bottom: 0;
+
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id="box">
+        <ul>
+            <li>
+                <img src="images/01.JPG" alt="">
+                <div>
+                    <p>百度一下，你就知道</p>
+                </div>
+            </li>
+            <li>
+                <img src="images/02.JPG" alt="">
+                <div>
+                    <p>百度一下，你就知道</p>
+                </div>
+            </li>
+            <li>
+                <img src="images/03.JPG" alt="">
+                <div>
+                    <p>百度一下，你就知道</p>
+                </div>
+            </li>
+            <li>
+                <img src="images/04.JPG" alt="">
+                <div>
+                    <p>百度一下，你就知道</p>
+                </div>
+            </li>
+            <li>
+                <img src="images/05.JPG" alt="">
+                <div>
+                    <p>百度一下，你就知道</p>
+                </div>
+            </li>
+            <li>
+                <img src="images/06.JPG" alt="">
+                <div>
+                    <p>百度一下，你就知道</p>
+                </div>
+            </li>
+            <li>
+                <img src="images/07.JPG" alt="">
+                <div>
+                    <p>百度一下，你就知道</p>
+                </div>
+            </li>
+            <li>
+                <img src="images/08.JPG" alt="">
+                <div>
+                    <p>百度一下，你就知道</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
+    <script>
+
+        $(function () {
+            $('#box>ul>li>div>p').each(function (index, el) {
+                $(this).css({ "backgroundPosition": "10px " + (-index * 25) + "px" });
+            })
+        })
+    </script>
+</body>
+
+</html>

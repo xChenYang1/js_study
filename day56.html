@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="./publick.css"> -->
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            width: 100%;
+        }
+
+        .wrap {
+            position: relative;
+            margin: 100px auto;
+            width: 250px;
+            height: 100px;
+        }
+
+        ul {
+            float: left;
+            width: 50px;
+            height: 100px;
+        }
+
+        img {
+            display: none;
+        }
+
+        li {
+            position: relative;
+            float: left;
+            background: url("https://s11.snscz.com/s12/img/original/2021/01/11/12/14004_ea8a3c0609.jpg");
+            background-size: 60px auto;
+            /* border: black 1px solid; */
+            overflow: hidden;
+            transition: 1s;
+        }
+        
+        .anim {
+            background-position: -10px 0;
+            
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <ul>
+            <li class="img"></li>
+            <li></li>
+        </ul>
+        <ul>
+            <li></li>
+        </ul>
+        <ul>
+            <li></li>
+            <li></li>
+        </ul>
+        <ul>
+            <li></li>
+        </ul>
+        <ul>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    <script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
+    <script>
+        // 先使用js实现效果 （测试）
+        let li = $('li');
+        // for (let i = 0; i < li.length; i++) {
+        //     if ((i+1) % 3 == 0) {
+        //         li[i].style.cssText = ` width: 50px;
+        //                                 height: 100px;`
+
+        //     } else {
+        //         li[i].style.cssText = ` width: 50px;
+        //                                 height: 50px;`
+        //     }
+        // }
+        // 将js思路转换为jQuery效果
+        $(function () {
+            // 将结构摆好
+            $('li').each(function (index, el) {
+                if ((index + 1) % 3 == 0) {
+                    $('li').eq(index).css({ "width": "50px", "height": "100px" })
+
+                } else {
+                    $('li').eq(index).css({ "width": "50px", "height": "50px" })
+                }
+            })
+            // 实现了效果 但是没怎么用jQuery元素 感觉不是很理想
+            $('li').hover(function(){
+                $('li').css({"opacity":0.5});
+                $(this).toggleClass('anim').css({"opacity":1});
+            },function(){
+                $('li').css({"opacity":1});
+                $(this).toggleClass('anim').css({"opacity":1});
+                
+            })
+            // 失败
+            // $('li').mouseover(function(){
+            //     $('li').stop().animate({
+            //                         'opacity':'0.5'},800)
+            //     $(this).stop().animate({"backgroundPosition":"-10px 0",'opacity':'1'},800)
+
+            // })
+            // $('li').mouseout(function(){
+            //     $('li').stop().animate({'opacity':'1'},800)
+            //     $(this).stop().animate({"backgroundPosition":"0px 0",'opacity':'1'},800)
+
+            // })
+
+        })
+            
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        class Person{
+            constructor(name,age){
+                this.name = name;
+                this.age = age;
+            }
+            say(){
+                console.log('say Hello')
+            }
+        }
+        let per = new Person('laowang',20);
+        console.log(per.name,per.age);
+
+        // 创建目标数组
+        let arr = [1,2,2,3,4,5,6,7,3,2,1,4,5];
+        // 创建储存数组
+        let arr1 = [];
+        // 创建计数器
+        let index = 0;
+        // 创建空对象（工具人）
+        let obj = {};
+        // 可以排序
+        arr.sort();
+        // for循环
+        for (let i = 0; i < arr.length; i++) {
+            // 判断obj中是否存在相应的键 如果返回underfined 则没有 则添加到新数组中 
+            if(obj[arr[i]] == undefined){
+                // 并修改obj[arr[i]] 的值 只要不为underfined都可以
+                obj[arr[i]] = true;
+                // 添加到新数组
+                arr1[index] = arr[i];
+                // 计数器自增
+                index++
+            }
+        }
+        // 输出
+        console.log(arr1);
+    </script>
+</body>
+</html>

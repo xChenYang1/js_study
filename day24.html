@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #back{
+            width: 200PX;
+            height: 200px;
+            background-color:aqua;
+        }
+    </style>
+</head>
+<body>
+    <button>点我修改p标签</button>
+    <div id="box1">
+        <p>111111</p>
+        <p>111111</p>
+        <p>111111</p>
+        <p>111111</p>
+        <p>111111</p>
+        <p>111111</p>
+        <p>111111</p>
+        <p>111111</p>
+        <p>111111</p>
+
+    </div>
+    <div id="box2">
+        <p>222222</p>
+        <p>222222</p>
+        <p>222222</p>
+        <p>222222</p>
+        <p>222222</p>
+        <p>222222</p>
+        <p>222222</p>
+        <p>222222</p>
+        <p>222222</p>
+        <p>222222</p>
+        <button>隐藏图片</button>
+    </div>
+        <div id="back"></div>
+    <script>
+        var box1 = document.getElementById('box1');
+        var box1_word = box1.getElementsByTagName('p');
+        var btn = document.getElementsByTagName('button');
+        btn[0].onclick = function(){
+            for (let i = 0; i < box1.getElementsByTagName('p').length; i++) {
+                box1_word[i].innerHTML = "被修改";
+                
+            }
+        }
+        var back = document.getElementById('back');
+        var judge = 0;
+        btn[1].onclick = function(){
+            if (judge == 0) {
+                back.style.display = "none";
+                this.innerHTML = '显示图片';
+                judge = 1;
+            }else if (judge == 1) {
+                back.style.display = "block";
+                this.innerHTML = '隐藏图片'; 
+                judge = 0;
+            }
+        }
+    </script>
+</body>
+</html>

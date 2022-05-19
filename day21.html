@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>获取字符串与定位字符串</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+    <script>
+        var str = "我爱中华人名共和国";
+        str = str.substr(2,2)
+        console.log(str);
+
+        var str1 = "hello wod odd ott fbo nhyo";
+        var num = "";
+        // var index;
+        var arr = [];
+        var i = 0;
+        do {
+            var index = str1.indexOf('o');
+            // console.log(index)
+            if (index != -1) {
+                arr[i] = index;
+            }
+            i++;
+            str1 = str1.replace('o','n');
+        } while (index != -1);
+        console.log(arr)
+    </script>
+</body>
+</html>

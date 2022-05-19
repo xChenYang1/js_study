@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <script>
+        
+        // 创建Person构造函数
+        function Person(name,age){
+            this.name = name;
+            this.age = age;
+        }
+        // 为Person添加原型
+        Person.prototype.sayHi = function(){
+            console.log('完美解决问题');
+        }
+        // 创建Student构造函数 并使用构造函数继承Person
+        function Student(name,age,score){
+            Person.call(this,name,age)
+            this.score = score;
+        }
+        // 组合式继承
+        Student.prototype = new Person();
+        // 为Student原型添加方法
+        Student.prototype.student = function(){
+            console.log('study学习');
+        }
+        // 实例化对象
+        let stu1 = new Student('小明','20',100)
+        console.log(stu1);
+        console.log(stu1.name);
+        console.log(stu1.age);
+        console.log(stu1.score);
+        stu1.sayHi();
+        stu1.student();
+        console.dir(Object);
+
+
+        // 第二遍练习
+        function Dog(name,age){
+            this.name = name;
+            this.age = age;
+        }
+        // 创建更多的对象方法
+        Dog.prototype = {
+            constructor:Dog,
+            // constructor = Dog,
+            run:function(){
+                console.log('run');
+            },
+            eat:function(){
+                console.log('eat');
+            }
+        }
+        function Animal(name,age,sex){
+            Dog.call(this,name,age);
+            this.sex = sex;
+        }
+        Animal.prototype = new Dog();
+        Animal.prototype.see = function(){
+            console.log('see')
+        };
+        let ani = new Animal('小黄','12','公')
+        console.log(ani);
+        ani.see()
+        ani.run()
+        ani.eat()
+    </script>
+</body>
+</html>

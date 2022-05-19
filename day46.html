@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let dog = {
+            name:'小黄',
+            age:12,
+            sex:1,
+            eat:function(){
+                console.log('eat');
+            },
+            other:{
+                name1:111,
+                name2:222,
+                name3:333,
+            }
+        };
+        let dog1 = {}
+        let dog2 = {}
+        
+        // 深拷贝
+        // 设置形参
+        function deepclone(source,target){
+            // for in循环 获取属性
+            for (const key in source) {
+                // 判断传入的是否为私有属性
+                if (source.hasOwnProperty(key)) {
+                    // 判断传入的值是否为object 是则进行下一个判断
+                    if (typeof source[key] == 'object') {
+                        // 判断source的键值为数组还是对象
+                        target[key] = Array.isArray(source[key])?[]:{};
+                        // 递归
+                        deepclone(source[key],target[key])
+                        // 如果不是 则直接复制
+                    }else{
+                        target[key] = source[key];
+                    }
+                    
+                }
+            }
+        }
+        
+        deepclone(dog,dog1);
+        dog1.eat(   )
+        console.log(dog1);
+        dog1.eat = function(){
+            console.log('eat xiaohuang');
+        }
+        dog1.eat()
+
+
+
+        // 浅拷贝
+        //设置形参
+        function simplecopy(source,target){
+            // for in 循环获取属性
+            for (const key in source) {
+                // 直接复制所有的属性
+                // 不管是否为引用类型还是值类型
+                target[key] = source[key];
+            }
+        }
+        simplecopy(dog,dog2);
+        console.log(dog2);
+        dog2.eat();
+        dog2.age = 15;
+        dog2.other.name1 = 'hhhh';
+        console.log(dog.other.name1);
+        console.log(dog2.other.name1);
+    </script>
+</body>
+</html>

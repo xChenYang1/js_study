@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            height: 5000px;
+        }
+        button{
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+        h1{
+            position: fixed;
+        }
+    </style>
+</head>
+<body>
+    <h1>封装函数 点击按钮回到顶部</h1>
+
+    <button>回到顶部</button>
+    <div id="hhh">演示文字</div>
+    <div class="word">演示文字1</div>
+    <div class="word">演示文字1</div>
+    <div class="word">演示文字1</div>
+    <div class="word">演示文字1</div>
+    <script>
+        let btn = document.querySelector('button');
+        // let judge = 1;
+        // let Top1 = 0;
+        // btn.onclick = function(){
+        //     let Top = document.documentElement.scrollTop,
+        //     index = 0,
+        //     index1 = 100;
+        //     judge = 0;
+        //     window.onscroll = function(){
+        //     if (judge == 0) {
+        //         document.documentElement.scrollTop = Top1;
+        //     }
+        // }
+        //     let anim = setInterval(function(){
+        //         index1 --;
+        //         index = Top/100;
+        //         document.documentElement.scrollTop =   index*index1;
+        //         Top1 = document.documentElement.scrollTop;
+        //         console.log('现在是'+Top1);
+        //         console.log(document.documentElement.scrollTop);
+        //         if (document.documentElement.scrollTop == 0) {
+        //             clearInterval(anim);
+        //             judge = 1;
+        //             window.onscroll = null;
+        //         }
+        //     },5)
+        // }
+
+
+        //封装了一个返回顶部的效果
+        // 直接填入需要绑定的对象即可 
+
+        // fun1(btn);//此时 btn为绑定的对象
+        // 只能返回顶部
+        function fun1(element){
+            // 创建fun1自己的局部变量
+            let judge = 1;
+            let Top1 = 0;
+            // 给目标绑定一个点击事件
+            element.onclick = function(){
+            // 目标被点击时获取当时的scrollTop
+            let Top = document.documentElement.scrollTop,
+            // 各种储存值
+            index = 0,
+            index1 = 100;
+            // 给window绑定一个鼠标滚动事件 此事件效果为 让鼠标滚不动
+            window.onscroll = function(){
+                // 使当前的scrollTop等于当前的scrollTop （即  滚不动）
+                document.documentElement.scrollTop = Top1;
+        }
+        // 绑定计时器 函数效果为 在0.5秒内 慢慢的返回顶部
+            let anim = setInterval(function(){
+                index1 --;
+                index = Top/100;
+                document.documentElement.scrollTop =   index*index1;
+                Top1 = document.documentElement.scrollTop;
+                console.log(document.documentElement.scrollTop);
+                // 清除计时器 
+                if (document.documentElement.scrollTop == 0) {
+                    clearInterval(anim);
+                    window.onscroll = null;
+                }
+            },5)
+            }
+        }
+        
+        // 能到达任意位置 并且时间都是相同的
+        // fun2(btn,0);
+        // 函数封装 面对对象
+        function fun2(element,distance){
+            // 创建fun1自己的局部变量
+            let Top1 = 0;
+            let Top2 = 0;
+            // 给目标绑定一个点击事件
+            element.onclick = function(){
+            // 目标被点击时获取当时的scrollTop
+            let Top = document.documentElement.scrollTop,
+            // 各种储存值
+            index = 0,
+            index1 = 0;
+            // 给window绑定一个鼠标滚动事件 此事件效果为 让鼠标滚不动
+            window.onscroll = function(){
+                // 使当前的scrollTop等于当前的scrollTop （即  滚不动）
+                document.documentElement.scrollTop = Top1;
+        }
+        // 绑定计时器 函数效果为 在0.5秒内 慢慢的返回指定位置
+            element.anim = setInterval(function () {
+                    index1++;
+                    index = (Top - distance) / 100;
+                    Top2 = Top - index * index1;
+                    document.documentElement.scrollTop = Top2;
+                    Top1 = document.documentElement.scrollTop;
+                    console.log(document.documentElement.scrollTop);
+                    // 清除计时器 
+                    if (document.documentElement.scrollTop == distance) {
+                        clearInterval(element.anim);
+                        window.onscroll = null;
+                    }
+                }, 5)
+            }
+        }
+
+        // 面向对象练习 
+        let $ = {
+            getElements:function(name){
+                return document.querySelectorAll(name)
+            },
+            setStyle:function(eles,color){
+                for (let i = 0; i < eles.length; i++) {
+                    eles[i].style.cssText = `color:${color};`
+                    
+                }
+            },
+            color:function(eles,color){
+                eles.style.color = color;
+            },
+            returnTop:function (element,distance){
+            // 创建fun1自己的局部变量
+            let Top1 = 0;
+            let Top2 = 0;
+            // 给目标绑定一个点击事件
+            element.onclick = function(){
+            // 目标被点击时获取当时的scrollTop
+            let Top = document.documentElement.scrollTop,
+            // 各种储存值
+            index = 0,
+            index1 = 0;
+            // 给window绑定一个鼠标滚动事件 此事件效果为 让鼠标滚不动
+            window.onscroll = function(){
+                // 使当前的scrollTop等于当前的scrollTop （即  滚不动）
+                document.documentElement.scrollTop = Top1;
+        }
+        // 绑定计时器 函数效果为 在0.5秒内 慢慢的返回指定位置
+            element.anim = setInterval(function () {
+                    index1++;
+                    index = (Top - distance) / 100;
+                    Top2 = Top - index * index1;
+                    document.documentElement.scrollTop = Top2;
+                    Top1 = document.documentElement.scrollTop;
+                    console.log(document.documentElement.scrollTop);
+                    // 清除计时器 
+                    if (document.documentElement.scrollTop == distance) {
+                        clearInterval(element.anim);
+                        window.onscroll = null;
+                    }
+                }, 5)
+            }
+        }
+        }
+        $.setStyle($.getElements('h1'), 'red');
+        $.setStyle($.getElements('#hhh'), 'red');
+        $.color($.getElements('.word')[3], 'blue');
+        $.returnTop($.getElements('button')[0], 0);
+
+
+    </script>
+</body>
+</html>

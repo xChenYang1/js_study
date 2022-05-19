@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>day31</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        ul,li{
+            list-style: none;
+        }
+
+        body {
+            position: relative;
+            background-attachment: fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .wrap{
+            position: absolute;
+            top: 50px;
+            left: 0;
+            width: 200px;
+            height: 100px;
+            background-color: aqua;
+            
+
+        }
+
+    </style>
+</head>
+<body>
+    <button>移动到400px</button>
+    <button>移动到800px</button>
+    <div class="wrap"></div>
+    <script src="publick.js"></script>
+    <script>
+        // 获取标签
+        let btn = document.querySelectorAll('button'),
+            wrap = document.querySelector('.wrap'),
+            // 获取left的值
+            Oleft = wrap.offsetLeft,
+            // 创建全局变量
+            anim = '',
+            left = 0;
+            // 封装函数
+            function funX(element,target){
+                anim = setInterval(function(){
+                    // 动态获取left的值
+                    Oleft = wrap.offsetLeft,
+                    // 三元判断
+                    target > Oleft ? left++ : left --;
+                    // 移动div
+                    wrap.style.left = `${left}px`;
+                    console.log(Oleft);
+                    // 清楚定时器
+                    if(left == target){
+                        clearInterval(anim);
+                    }
+                },1)
+            };
+            // 调用函数
+            btn[0].onclick = function(){
+                funX(wrap,400)
+            }
+            btn[1].onclick = function(){
+                funX(wrap,800)
+            }
+    </script>
+</body>
+</html>

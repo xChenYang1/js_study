@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 5000px;
+        }
+
+        button {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+
+        h1 {
+            position: fixed;
+        }
+    </style>
+</head>
+    
+<body>
+
+    <script>
+        let dog = {
+            name: 'Dahuang',
+            age: 'three',
+            weight: '250kg',
+            action: function () {
+                console.log('每次走路都很慢,喜欢吃大骨头');
+            }
+        }
+        console.log(dog);
+        dog.action();
+
+        let iphone = new Object();
+        iphone.model = 12;
+        iphone.color = 'yello';
+        iphone.action = function () {
+            console.log('可以打电话和发短信');
+        }
+        console.log(iphone);
+        iphone.action();
+
+        function Image(width, height, size) {
+            this.width = width + 'px';
+            this.height = height + 'px';
+            this.size = size + 'M';
+            this.action = function () {
+                console.log('图片可以展示内容');
+            };
+        }
+        function Cat(color, weight, age) {
+            this.color = color;
+            this.weight = weight;
+            this.age = age;
+            this.action = function () {
+                console.log('小猫可以抓耗子,可以打架');
+            };
+        }
+
+        let image1 = new Image(300, 200, 4);
+        let cat1 = new Cat('red', '40kg', 3);
+        console.log(image1);
+        image1.action();
+        console.log(cat1);
+        cat1.action();
+    </script>
+</body>
+
+</html>

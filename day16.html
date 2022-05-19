@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input class="day" value="2020" type="text"  placeholder="请输入年份：">
+    <input class="day" value="12" type="text"  placeholder="请输入月份：">
+    <input class="day" value="31" type="text"  placeholder="请输入日期：">
+    <input class="button" type="submit" >
+    <script>
+        var len = document.querySelectorAll('.day');
+        var button = document.querySelector('.button');
+        var monDay = [31,28,31,30,31,30,31,31,30,31,30,31]
+        var sumDay = [];
+        var sum = 0;
+        button.onclick = function(){
+            for (let i = 0; i < len.length; i++) {
+            sumDay[i] = parseInt(len[i].value); 
+            }
+            console.log(sumDay);
+            for (let j = 0; j < sumDay[1] -1; j++) {
+                    sum += monDay[j+1];
+                    
+                }
+                if(sumDay[0] % 4 ==  0 && sumDay % 100 != 0 || sumDay % 400 ==0 ){
+                    sum += 1;
+                }
+        sum += sumDay[2];
+        console.log(sum);
+        sum = 0;
+        }
+
+     </script>
+</body>
+</html>

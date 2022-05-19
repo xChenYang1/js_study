@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style type="text/css">
+    #dv {
+        width: 300px;
+        height: 200px;
+        position: absolute;
+        left: 300px;
+        top: 100px;
+    }
+
+    .strengthLv0 {
+        height: 6px;
+        width: 120px;
+        border: 1px solid #ccc;
+        padding: 2px;
+    }
+
+    .strengthLv1 {
+        background: red;
+        height: 6px;
+        width: 40px;
+        border: 1px solid #ccc;
+        padding: 2px;
+    }
+
+    .strengthLv2 {
+        background: green;
+        height: 6px;
+        width: 80px;
+        border: 1px solid #ccc;
+        padding: 2px;
+    }
+
+    .strengthLv3 {
+        background: blue;
+        height: 6px;
+        width: 120px;
+        border: 1px solid #ccc;
+        padding: 2px;
+    }
+</style>
+
+<body>
+    <div id="dv">
+        <label for="pwd">密码</label>
+        <input type="text" id="pwd" maxlength="16">
+        <!--课外话题-->
+        <div>
+            <em>密码强度：</em>
+            <em id="strength"></em>
+            <div id="strengthLevel" class="strengthLv0"></div>
+        </div>
+    </div>
+    <script src="publick.js"></script>
+    <script>
+        /*
+        核心思想：
+        密码：数字、字母、特殊符号组成
+        密码:只有数字，或者只有字母，或者只有特殊符号---属于1级--弱显示红色
+        两两组合：数字和字母，数字和特殊符号，字母和特殊符号---属于2级--中显示绿色
+        三者都有：有数字和字母和特殊符号---属于3级---强显示蓝色
+    
+        我们会用到键盘抬起onkeyup键盘抬起 onkeydown
+    
+        思路：每次抬起键盘的时候获取文本框的内容，得到内容来判断一个级别，然后下面div显示对应的颜色
+        记的还要判断密码长度  如果密码长度小于6不用做判断，必须是大于6的才会显示对应的颜色
+        */
+
+        let pwd = document.querySelector('#pwd');
+        let div = document.querySelector('#strengthLevel');;
+        // let pasLen ;
+        // let Level = 0;
+        // if (pasLen > 6 && pasLen <= 16) {
+        //     /\d/.test(pwd.value) == true?pasLen++:pasLen=pasLen;
+        //     /[a-a-zA-Z]/.test(pwd.value) == true?pasLen++:pasLen=pasLen;
+        //     /[\W_]/.test(pwd.value) == true?pasLen++:pasLen=pasLen;
+        // }else{
+        //     pasLen = 0;
+        // }
+        // if(pasLen = 0){
+        //     div.className = 'strengthLv0'
+        // }else if(pasLen = 1) {
+        //     div.className = 'strengthLv1'
+        // }else if (pasLen = 2) {
+        //     div.className = 'strengthLv2'
+        // }else if(pasLen = 3){
+        //     div.className = 'strengthLv3'
+        // }
+
+        // 创建 键盘按下事件
+        function pasword(element, target) {
+            // 创建计数器
+            // 每次点击时 初始化
+            this.Level = 0;
+            // 创建储存element长度
+            this.length = element.value.length;
+            console.log(this.length);
+            // 当输入的长度大于5时 开始判断
+            if (this.length > 5 && this.length <= 16) {
+                // 将正则表达式储存到数组中，减少代码冗余
+                let arr = [/\d/,/[a-zA-Z]/,/[^\da-zA-Z]/];
+                // for循环判断
+                for (let i = 0; i < arr.length; i++) {
+                    // 三元表达式 如果满足则Level++ 否则不变
+                    arr[i].test(element.value) == true ? this.Level++ : this.Level = this.Level;
+                }
+                // 如果长度小于6则不判断
+            } else {
+                this.Level = 0;
+            }
+            console.log('强度是' + this.Level);
+            // 强度显示器
+            if (this.Level == 0) {
+                target.className = 'strengthLv0'
+            } else if (this.Level == 1) {
+                target.className = 'strengthLv1'
+            } else if (this.Level == 2) {
+                target.className = 'strengthLv2'
+            } else if (this.Level == 3) {
+                target.className = 'strengthLv3'
+            }
+        }
+        // 绑定事件
+        pwd.onkeyup = function () {
+            pasword(pwd, div)
+        }
+    </script>
+
+</body>
+
+</html>

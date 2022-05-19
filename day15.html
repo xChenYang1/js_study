@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var num1 = 1;
+        var num2 = 1;
+        var sum = 0;
+        var x = prompt(parseInt("输入一个整数"))
+        for (let i = 0; i < x; i++) {
+            sum = num1 + num2;
+            num1 = num2;
+            num2 = sum;
+        }
+        console.log(sum);
+    </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // let books = [
+        //     { name: "活着", price: 27.7, press: "作家出版社" },
+        //     { name: "流浪地球", price: 37.6, press: "中国华侨出版社" },
+        //     { name: "罗生门", price: 36.3, press: "开明出版社" },
+        //     { name: "三体", price: 51.5, press: "重庆出版社" }
+        //     // { name: "偷星九月天", price: 30, press: "动漫出版社" }
+        // ];
+        // // 创建一个类
+        // class BookManager {
+        //     // 创建构造函数
+        //     constructor(books) {
+        //         this.books = books;
+        //     }
+        //     // 获取书名
+        //     getBookName(name) {
+        //         // 遍历寻找书名
+        //         for (let i = 0; i < this.books.length; i++) {
+        //             // 如果第i个books的name等于输入的name
+        //             if (this.books[i].name == name) {
+        //                 // 返回第i个books的内容
+        //                 return this.books[i];
+        //             }
+        //         }
+        //     }
+        //     // 添加书本信息
+        //     addBook(newBook){
+        //         // 执行添加
+        //         this.books.push(newBook)
+        //     }
+        //     // 替换书本信息
+        //     updateBookByName(name,newBook){
+        //         // 获取想要替换的书本名字
+        //         let book = this.getBookName(name);
+        //         // 获取想要替换的书本的索引
+        //         let i = this.books.indexOf(book);
+        //         // 执行替换
+        //         this.books.splice(i,1,newBook)
+        //     }
+        //     // 删除书本信息
+        //     deleteBookByName(name){
+        //         // 获取想要删除的书本信息
+        //         let book = this.getBookName(name);
+        //         // 获取想要删除的书本索引
+        //         let i = this.books.indexOf(book);
+        //         // 执行删除
+        //         this.books.splice(i,1);
+        //     }
+        // }
+        // // 实例化
+        // let manager = new BookManager(books)
+
+        // 重新写一遍
+        
+        let books = [
+            { name: "活着", price: 27.7, press: "作家出版社" },
+            { name: "流浪地球", price: 37.6, press: "中国华侨出版社" },
+            { name: "罗生门", price: 36.3, press: "开明出版社" },
+            { name: "三体", price: 51.5, press: "重庆出版社" }
+            // { name: "偷星九月天", price: 30, press: "动漫出版社" }
+        ];
+        class BookManager {
+            constructor(books) {
+                this.books = books;
+            }
+            getBookName(name) {
+                for (let i = 0; i < this.books.length; i++) {
+                    if (this.books[i].name == name) {
+                        return books[i]
+                    }
+
+                }
+            }
+            addBook(newBook) {
+                books.push(newBook);
+                return books;
+            }
+            updateBookByName(name, newBook) {
+                let book = this.getBookName(name);
+                let i = this.books.indexOf(book);
+                this.books.splice(i, 1, newBook);
+                return books;
+                
+            }
+            deleteBookByName(name) {
+                let book = this.getBookName(name);
+                let i = this.books.indexOf(name);
+                this.books.splice(i, 1);
+                return books;
+            }
+        }
+        let manager = new BookManager(books);
+
+
+
+        let know1 = `instanceof 运算符用于测试构造函数的prototype属性
+                    是否出现在对象的原型链中的任何位置`;
+                    
+        let know2 = `new.target属性允许你检测函数或构造方法是否是通过
+                    new运算符被调用的。在通过new运算符被初始化的函数或
+                    构造方法中，new.target返回一个指向构造方法或函数的
+                    引用。在普通的函数调用中，new.target 的值是undefined。`
+    </script>
+</body>
+
+</html>

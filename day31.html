@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>day31</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        ul,li{
+            list-style: none;
+        }
+
+        body {
+            /* background-image: url("images/1.jpg"); */
+            background-attachment: fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+    </style>
+</head>
+<body>
+
+        <button>点击按钮创建表格</button>
+    <div class="box">
+
+    </div>
+    </table>
+    <script src="publick.js"></script>
+    <script>
+        let box = document.querySelector('.box');
+        let btn = document.querySelector('button')
+        let arr=[
+        {name:"百度",href:"http://www.baidu.com"},
+        {name:"谷歌",href:"http://www.google.com"},
+        {name:"优酷",href:"http://www.youku.com"},
+        {name:"土豆",href:"http://www.tudou.com"},
+        {name:"快播",href:"http://www.kuaibo.com"},
+        {name:"爱奇艺",href:"http://www.aiqiyi.com"}
+        ];
+        btn.onclick = function (){
+            var tab = document.createElement("table");
+        tab.border = '1';
+        tab.cellPadding = '0';
+        tab.cellSpacing = '0';
+        box.appendChild(tab);
+        for (let i = 0; i < arr.length; i++) {
+            var hang = document.createElement('tr');
+            tab.appendChild(hang);
+            var lie = document.createElement('td');
+            lie.innerHTML = arr[i].name;
+            tab.appendChild(lie);
+            var lie1 = document.createElement('a');
+            lie1.href = arr[i].href;
+            lie1.innerHTML = arr[i].name;
+            tab.appendChild(lie1);
+
+            
+        }
+        }
+    </script>
+</body>
+</html>

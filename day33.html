@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>day31</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+        ul,li{
+            list-style: none;
+        }
+
+        body {
+            background-attachment: fixed;
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .wrap{
+            margin: 0 auto;
+
+        }
+        p{
+            margin: 0 100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <img  src="" alt="">
+        <p></p>
+    </div>
+    <script src="publick.js"></script>
+    <script>
+
+        setInterval(function(){
+            // 获取标签
+                var img = document.querySelector('img'),
+                    p = document.querySelector('p'),
+                    // 获取时间对象
+                    time = new Date(),
+                    hour = time.getHours(),
+                    min = time.getMinutes(),
+                    sec = time.getSeconds(),
+                    // 将时间对象储存到数组中
+                    arr = [hour,min,sec];
+                    // 将所有的时间数值变为两位数的字符串（方便写路径）
+                for (let i = 0; i < arr.length; i++) {
+                    if (arr[i] < 10) {
+                        arr[i] = '0' + arr[i].toString();
+                    }else{
+                        arr[i] = arr[i].toString();
+                    }
+                    console.log(arr[i]);
+                }
+                // 更改图片的路径为现在的小时和分钟  我的拓展
+                // img.src = `./meimei/${arr[0]}_${arr[1]}.jpg`
+                // 更改图片的路径为现在的小时数和秒钟  
+                img.src = `./meimei/${arr[0]}_${arr[2]}.jpg`
+
+                // 字符串显示时间
+                p.innerHTML = `现在是${arr[0]}点${arr[1]}分${arr[2]}秒`
+            },1000)
+    </script>
+</body>
+</html>

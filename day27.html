@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html{
+            height: 100%;
+        }
+        body{
+            user-select: none;
+            width: 100%;
+            height: 100%;
+            margin: 100px auto;
+        }
+        .wrap{
+            position: relative;
+            margin: 0 auto;
+            width: 300px;
+            height: 700px;
+            /* background-color: rgba(0, 255, 255, 0.329); */
+        }
+        .box{
+            /* display: none; */
+            
+            position: absolute;
+            top: 0;
+            width: 300px;
+            height: 700px;
+            font-size: 100px;
+            text-align: center;
+            line-height: 700px;
+            opacity: 0;
+            background-color: rgba(255, 192, 203, 0.363);
+            transition:  opacity ease 1s;
+        }
+        .btn{
+            cursor: pointer;
+            position: absolute;
+            top: 0;
+            width: 100px;
+            height: 100px;
+            color: blue;
+            font-size: 50px;
+            z-index: 10;
+            background-color: rgba(0, 0, 0, 0.548);
+        }
+        .btn:nth-child(1){
+            left:0px;
+        }
+        .btn:nth-child(2){
+            left: 100px;
+        }
+        .btn:nth-child(3){
+            left: 200px;
+        }
+        .bar{
+            position: absolute;
+            top: 100px;
+            width: 100px;
+            height: 20px;
+            z-index: 10;
+            transition: .5s;
+            background-color: black;
+            /* opacity: 1; */
+
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="btn">1</div>
+        <div class="btn">2</div>
+        <div class="btn">3</div>
+
+        <div class="bar"></div>
+        <div class="box" style="display: block;opacity: 1;">1</div>
+        <div class="box">2</div>
+        <div class="box">3</div>
+    </div>
+    <script>
+        var btn = document.querySelectorAll(".btn");
+        var box = document.querySelectorAll('.box');
+        var bar = document.querySelector('.bar')
+        fun(btn,box,bar)
+        function fun(x,y,z){
+        // x被点击的菜单 
+        // y被显示的菜单
+        // z移动的移动条
+            var index = 0;
+            for (let i = 0; i < x.length; i++) {
+            x[i].onclick = function(){
+                for (let j = 0; j < y.length; j++) {
+                    y[j].style.cssText = `z-index: 0;opacity: 0;`;
+                    
+                }
+                z.style.cssText = `transform: translateX(${i*100}px);`
+                y[i].style.cssText = `z-index: 9;opacity: 1;`;
+            }
+            
+        }
+        }
+    </script>
+</body>
+</html>

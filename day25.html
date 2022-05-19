@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #back{
+            width: 200PX;
+            height: 200px;
+            background-color:aqua;
+        }
+        #back2{
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+
+        <button id="back1">隐藏</button>
+        <!-- 这里是第0个button -->
+        <div id="back2"></div>
+
+        <button>完美</button>
+        <button>完美</button>
+        <button>完美</button>
+        <button>完美</button>
+        <button>完美</button>
+        <button>完美</button>
+    <script>
+
+        function id$(x){
+            return document.getElementById(x);
+        }
+        function tag$(x){
+            return document.getElementsByTagName(x);
+        }
+
+        id$('back1').onclick = function(){
+            if (this.innerHTML == "隐藏") {
+                id$('back2').style.display = 'none';
+                this.innerHTML = "显示";
+            } else if (this.innerHTML == "显示") {
+                id$('back2').style.display = 'block';
+                this.innerHTML = "隐藏";
+            }
+        }
+        // 昨天的作业重新写了一遍
+
+        var btn = tag$('button');
+        // 因为我昨天的作业有个btn 所以这里btn从1开始
+        for (let i = 1; i < btn.length ; i++) {
+            btn[i].onclick = function(){
+                for (let j = 1; j < btn.length ; j++) {
+                    btn[j].innerHTML = "完美";
+                }
+                btn[i].innerHTML = "优秀";
+            }
+            
+        }
+    </script>
+</body>
+</html>

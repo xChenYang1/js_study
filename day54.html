@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            width: 100%;
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        .wrap {
+            margin-top: 100px;
+            display: flex;
+            justify-content: center;
+        }
+
+        li {
+            width: 100px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            color: rgb(255, 255, 255);
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .wrap>li>ul {
+            display: none;
+        }
+
+        .pink {
+            background-color: pink;
+        }
+    </style>
+</head>
+
+<body>
+    <ul class="wrap">
+        <li>
+            <p>前端开发</p>
+            <ul>
+                <li>
+                    <p>前端开发</p>
+                </li>
+                <li>
+                    <p>前端开发</p>
+                </li>
+                <li>
+                    <p>前端开发</p>
+                </li>
+                <li>
+                    <p>前端开发</p>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <p>前端开发</p>
+            <ul>
+                <li>
+                    <p>前端开发</p>
+                </li>
+                <li>
+                    <p>前端开发</p>
+                </li>
+                <li>
+                    <p>前端开发</p>
+                </li>
+                <li>
+                    <p>前端开发</p>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <p>前端开发</p>
+            <ul>
+                <li>
+                    <p>前端开发</p>
+                </li>
+                <li>
+                    <p>前端开发</p>
+                </li>
+                <li>
+                    <p>前端开发</p>
+                </li>
+                <li>
+                    <p>前端开发</p>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <p>前端开发</p>
+            <ul>
+                <li>
+                    <p>前端开发</p>
+                </li>
+                <li>
+                    <p>前端开发</p>
+                </li>
+                <li>
+                    <p>前端开发</p>
+                </li>
+                <li>
+                    <p>前端开发</p>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <script src="./jquery.js"></script>
+    <script>
+        // mouseenter鼠标进入事件
+        // mouseleave鼠标离开事件
+
+        // 下面的不好用
+        //mouseover：鼠标经过事件
+        //mouseout:鼠标离开事件
+        $(function () {
+            $('.wrap>li').mouseenter(function () {
+                $(this).children('ul').slideToggle(200);
+            });
+            $('.wrap>li').mouseleave(function () {
+                $(this).children('ul').slideToggle(200);
+            });
+            $('p').mouseenter(function () {
+                $(this).toggleClass('pink')
+            })
+            $('p').mouseleave(function () {
+                $(this).toggleClass('pink')
+            })
+        })
+    </script>
+</body>
+
+</html>

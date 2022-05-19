@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+
+        }
+
+        img {
+            vertical-align: top;
+        }
+
+        /*取消图片底部3像素距离*/
+        .box {
+            width: 300px;
+            height: 200px;
+            /* margin: 100px auto; */
+            background-color: pink;
+            border: 1px solid red;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            overflow: hidden;
+        }
+
+        .box ul li {
+            float: left;
+        }
+
+        .box ul {
+            width: 1500px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .cirbox{
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            /* background-color: violet; */
+        }
+        .cir{
+            /* position: absolute; */
+            cursor: pointer;
+            float: left;
+            margin: 0 5px;
+            z-index: 10;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.678);
+        }
+    </style>
+</head>
+<body>
+<div class="box" id="screen">
+    <ul>
+        <li><img src="imagess/01.jpg" alt=""/></li>
+        <li><img src="imagess/02.jpg" alt=""/></li>
+        <li><img src="imagess/03.jpg" alt=""/></li>
+        <li><img src="imagess/04.jpg" alt=""/></li>
+        <li><img src="imagess/01.jpg" alt=""/></li>
+    </ul>
+    <div class="cirbox">
+        <div class="cir"></div>
+        <div class="cir"></div>
+        <div class="cir"></div>
+        <div class="cir"></div>
+        <div class="cir"></div>
+    </div>
+</div>
+<script src="publick.js"></script>
+<script>
+    // 获取标签
+    let ul = document.querySelector('ul'),
+        cir = document.querySelectorAll('.cir'),
+        width = document.querySelector('img').offsetWidth;
+        // 封装函数
+        function funX(element,target){
+            // 获取当前的element的left
+                let Oleft = element.offsetLeft,
+                // 设置速度变量 （控制图片移动快慢）
+                    step = 5;
+                    // 设表先关
+                clearInterval(element.anim);
+                // 绑定定时器
+                element.anim = setInterval(function(){
+                    // 动态获取left的值
+                    Oleft = element.offsetLeft;
+                    // 三元判断
+                    target > Oleft ? Oleft+= step : Oleft -= step;
+                    // 移动div
+                    element.style.left = `${Oleft}px`;
+                    console.log(Oleft);
+                    // 清楚定时器
+                    if(Oleft == target){
+                        // 清楚定时器
+                        clearInterval(element.anim);
+                    }
+                },1)
+            }; 
+            
+        for (let i = 0; i < cir.length; i++) {
+            // 设置一个储存值 （可以创建自定义属性 也可以直接定义一个对象 就像我这样）
+            cir[i].index = i;
+            // 绑定点击事件
+            cir[i].onclick = function(){
+                funX(ul,`${i*-width}`)
+            } 
+        }
+
+</script>
+</body>
+</html>

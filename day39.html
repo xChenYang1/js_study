@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            
+        }
+
+    </style>
+</head>
+<body>
+    <p class="item">11111</p>
+    <p class="item">22222</p>
+    <p class="item">33333</p>
+<script src="publick.js"></script>
+<script>
+    function fun1(x){
+        let demo = document.querySelectorAll(x);
+        for (let i = 0; i < demo.length; i++) {
+            demo[i].style.cssText = `color:blue;
+        border: 1px red solid;
+        background-color: aqua;
+        `;
+            
+        }
+        
+
+    }
+    // 寻找p标签
+    fun1('p');
+    // 寻找class为item的元素
+    fun1('.item');
+</script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        div {
+            cursor: pointer;
+            user-select: none;
+            border: black 1px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <script>
+        let div = document.querySelectorAll('div')
+        // 方法一：通过setTimeout调用
+        // for (let i = 0; i < div.length; i++) {
+        //     function fun(i) {
+        //         return function () {
+        //             div[i].innerHTML = `这是第${i}个div`;
+        //             div[i].onclick = function () {
+        //                 console.log(`这是第${i}个div`);
+        //             }
+        //             console.log(i);
+        //         }
+        //     }
+        //     setTimeout(fun(i), 100);
+        // }
+        // 方法二：for循环调用
+        function fun(i) {
+            return function (i) {
+                div[i].innerHTML = `这是第${i + 1}个div`;
+                div[i].onclick = function () {
+                    console.log(`这是第${i + 1}个div`);
+                }
+            }
+        }
+        let result = fun();
+        for (let j = 0; j < div.length; j++) {
+            result(j)
+
+        }
+
+    </script>
+</body>
+
+</html>

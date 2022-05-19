@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            height: 5000px;
+        }
+
+        button {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+
+        h1 {
+            position: fixed;
+        }
+    </style>
+</head>
+
+<body>
+
+    <script>
+        // 混入式继承
+        let obj1 = {
+            name:'lw',
+            age:20,
+            sex:1,
+        }
+        let obj2 = {};
+        for(let key in obj1){
+            obj2[key] = obj1[key];
+        }
+        console.log(obj2);
+        // 总结：继承为共享数据 具有指向性 一个数据被修改了 那么所有的共享都被修改
+
+        // 原型式继承
+        // 创建两个空函数
+        function Animal(){
+
+        }
+        function Person(){
+
+        }
+        // 给Animal添加属性和方法
+        Animal.prototype.color = 'pink';
+        Animal.prototype.eat = function(){
+            console.log('eat apple');
+        }
+        // 将Animal的属性和方法继承给Person
+        Person.prototype = Animal.prototype;
+        // 实例化对象
+        let per = new Person();
+        // per也能拿到Animal的方法和属性了
+        console.log(per.color);
+        per.eat();
+
+        // 创建空的构造函数
+        function MyArray(){
+        }
+        // 继承Array的原型
+        MyArray.prototype = new Array();
+        // 为MyArray添加新的方法
+        MyArray.prototype.getLength = function(){
+            return this.length;
+        }
+        // 实例化对象 （此时arr为空）
+        let arr = new MyArray();
+        // 向arr中添加内容
+        arr.push(1,2,3,4,5);
+        console.log(arr);
+        // 返回arr的长度
+        console.log(arr.getLength());
+
+
+
+    </script>
+</body>
+
+</html>

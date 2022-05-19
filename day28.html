@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>米子卡的作业</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            width: 500px;
+            height: 500px;
+            margin: 100px auto;
+        }
+        .wrap{
+            width: 100px;
+            height: 30px;
+            margin: 0 auto;
+            background-color: pink;
+        }
+        .box{
+            display: none;
+            width: 100px;
+            height: 100px;
+            margin: 0 auto;
+            transform: translateY(30px);
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrap">
+        <div class="box">
+
+        </div>
+    </div>
+    <script>
+        var wrap = document.querySelector('.wrap');
+        var box = document.querySelector('.box');
+        wrap.onmouseover = function(){
+            box.style.display = 'block';
+        }
+        wrap.onmouseout = function(){
+            box.style.display = 'none';
+            
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+        img {
+            vertical-align: top;
+            width: 300px;
+            height: 200px;
+        }
+        body{
+            height: 2000px;
+            /* overflow: auto; */
+        }
+
+        /*取消图片底部3像素距离*/
+        .box {
+            width: 300px;
+            height: 200px;
+            /* margin: 100px auto; */
+            background-color: pink;
+            /* border: 1px solid red; */
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            overflow: hidden;
+        }
+
+        .box ul li {
+            float: left;
+        }
+
+        .box ul {
+            width: 1500px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+        .btn{
+            display: none;
+            user-select: none;
+            cursor: pointer;
+            width: 30px;
+            height: 60px;
+            position: absolute;
+            top: 50%;
+            line-height: 60px;
+            text-align: center;
+            transform: translateY(-50%);
+            background-color: rgba(255, 255, 255, 0.514);
+        }
+        .left{
+            left: 0;
+        }
+        .right{
+            right: 0;
+        }
+        .cirbox{
+            width: 200px;
+            height: 10px;
+            display: flex;
+            position: absolute;
+            left: 50%;
+            bottom: 10px;
+            transform: translateX(-50%);
+        }
+        .cir{
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.5);
+            float: left;
+            margin: 0 auto;
+        }
+        /* .cir:nth-child(1){
+            background-color: white;
+        } */
+        .white{
+            background-color: white;
+        }
+        .top{
+            width: 100%;
+
+        }
+        .top1{
+            width: 200px;
+            height: 100px;
+            background-color: aqua;
+        }
+        .top2{
+            width: 200px;
+            height: 100px;
+            background-color: brown;
+        }
+        .fixed{
+            position: fixed;
+            top:-100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="top">
+        <div class="top1"><h1>请移动滑轮</h1></div>
+        <div class="top2"><h1>请移动滑轮</h1></div>
+    </div>
+    <div class="box" id="screen">
+        <ul>
+            <li><img src="https://s11.snscz.com/s12/img/1200/2021/01/03/20/14004_605516b123.jpg" alt=""/></li>
+            <li><img src="https://s11.snscz.com/s12/img/1200/2020/12/12/12/14004_568c57c99c.jpg" alt=""/></li>
+            <li><img src="https://s2.azz.net/img/1200/2020/12/02/11/14004_cfd3107e87.jpg" alt=""/></li>
+            <li><img src="https://s2.azz.net/img/1200/2020/11/01/11/14004_5e2dd87114.jpg" alt=""/></li>
+        </ul>
+        <div class="btn left"><</div>
+        <div class="btn right">></div>
+        <div class="cirbox">
+        </div>
+    </div>
+<script src="publick.js"></script>
+<script>
+    // 获取元素
+    let ul = document.querySelector('ul'),
+        li = document.querySelectorAll('li'),
+        box = document.querySelector('.box'),
+        cirbox = document.querySelector('.cirbox'),
+        img = document.querySelector('img'),
+        btn = document.querySelectorAll('.btn'),
+        left = document.querySelector('.left'),
+        right = document.querySelector('.right'),
+        // 全局变量
+        index = 0;
+        // 克隆第一个元素
+        let Cli1 = ul.childNodes[1].cloneNode(true);
+        ul.appendChild(Cli1);
+        // 创建圆点的效果
+        for (let i = 0; i < li.length; i++) {
+            let div = document.createElement('div');
+            div.className = "cir";
+            cirbox.appendChild(div);
+            // 第一个子元素显色
+            cirbox.children[0].className = 'cir white';
+            // 绑定点击事件
+            div.onclick = function(){
+                // 调用动画函数
+                funX(ul,i * -img.offsetWidth)
+                // 排他思想
+                for (let j = 0; j < li.length; j++) {
+                    cirbox.children[j].className = 'cir'
+                }
+                this.className = 'cir white';
+                // 绑定索引
+                index = i;
+            }
+        }
+        // 结合所有的情况 封装函数
+        function fun2(x){
+            // 判断此时是否为最边缘的图片
+            // 右判断
+            if (index == li.length && x == 1) {
+                index = 0;
+                ul.style.left = 0 + 'px';
+            // 左判断
+            }else if (index == 0 && x == -1) {
+                index = li.length;
+                ul.style.left = ((index ) * -img.offsetWidth) + 'px';
+            }
+            index += x;
+            // 调用动画函数
+                funX(ul,index * -img.offsetWidth)
+                // 排他思想 
+            for (let j = 0; j < li.length; j++) {
+                    cirbox.children[j].className = 'cir'
+                }
+                // 如果index超出小圆点的个数 则显示为第0个
+            if (index == li.length) {
+                cirbox.children[0].className = 'cir white';
+            }else{
+            cirbox.children[index].className = 'cir white';
+            }
+        }
+        // 右按钮点击效果
+        right.onclick = function(){
+            fun2(1)
+        }
+        left.onclick = function(){
+            fun2(-1)
+        }
+
+        // 复制右按钮点击效果 
+        function fun1(){
+            fun2(1)
+        }
+        // 绑定定时器
+    let anim = setInterval( fun1,3000);
+    box.onmouseover = function(){
+        // 按钮的显示效果
+        for (let i = 0; i < btn.length; i++) {
+            btn[i].style.display = 'block';
+        }
+        clearInterval(anim)
+    }
+    box.onmouseout = function(){
+        for (let i = 0; i < btn.length; i++) {
+            btn[i].style.display = 'none';
+        }
+        anim = setInterval(fun1,3000);
+        
+    }
+    let body = document.querySelector('body'),
+        Top = document.querySelector('.top');
+        console.log(body.scrollTop);
+        console.log(body);
+        
+        body.onscroll = function(){
+            // 判断body的scollTop 是否大于top1的height
+            if (document.documentElement.scrollTop > 100) {
+                Top.className = 'top fixed';
+                console.log('yes');
+            }else{
+                Top.className = 'top ';
+                console.log('no');
+            }
+        }
+</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>随机数获取装置</title>
+    <style>
+        body{
+            background-color: aqua;
+            transition: all 1s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+
+    <script>
+        var body = document.querySelector('body');
+        var arr = [0,1,2,3,4,5,6,7,8,9,"a",'b','c','d','e','f']
+        setInterval(function(){
+            var clr = "#"
+            for (let i = 0; i < 6; i++) {
+                var num = parseInt(Math.random()*arr.length);
+               
+             clr +=  arr[num];
+        }
+        console.log(clr);
+        body.style.cssText = `background-color: ${clr};`
+
+        },1)
+    </script>
+</body>
+</html>
