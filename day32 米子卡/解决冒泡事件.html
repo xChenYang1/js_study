@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #dv1{
+            width: 300px;
+            height: 200px;
+            background: red;
+        }
+        #dv2{
+            width: 250px;
+            height: 150px;
+            background: green;
+        }
+        #dv3{
+            width: 200px;
+            height: 100px;
+            background: yellowgreen;
+        }
+    </style>
+</head>
+<body>
+    <div id="dv1">
+        <div id="dv2">
+            <div id="dv3"></div>
+        </div>
+    </div> 
+    <script src="publick.js"></script>
+    <script>
+          /* 
+        事件冒泡：一定是盒子套盒子，如果对立面的盒子做了点击事件，外面的盒子也有和立面的盒子相同的点击事件，那么外面的盒子也会被触发
+        满足事件冒泡条件
+        第一、首先是盒子嵌套盒子
+        第二、每个盒子都有相同的点击事件
+        */
+        my$("dv1").onclick = function (){
+           console.log(this.id);
+         
+       };
+       my$("dv2").onclick = function(e){
+           console.log(this.id);
+           e.stopPropagation();
+       };
+       my$("dv3").onclick = function(e){
+           console.log(this.id);
+           e.stopPropagation();
+           window.event.cancelBubble = true;
+       }
+    </script>
+</body>
+</html>

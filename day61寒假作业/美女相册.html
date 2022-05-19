@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="publick.css">
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <title>美女相册</title>
+    <style>
+        body {
+            background-image: url('https://s11.snscz.com/s12/img/1200/2021/01/03/20/14004_605516b123.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+        }
+        .box>img{
+            width: 300px;
+            height: 170px;
+        }
+        .screen>img{
+            width: 1200px;
+            height: 680px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="screen">
+            <img src="https://s11.snscz.com/s12/img/1200/2021/01/03/20/14004_605516b123.jpg" alt="">
+        </div>
+        <div class="box">
+            <img src="https://s11.snscz.com/s12/img/1200/2021/01/03/20/14004_605516b123.jpg" alt="">
+            <img src="https://s11.snscz.com/s12/img/1200/2020/12/12/12/14004_568c57c99c.jpg" alt="">
+            <img src="https://s2.azz.net/img/1200/2020/12/02/11/14004_cfd3107e87.jpg" alt="">
+            <img src="https://s2.azz.net/img/1200/2020/11/01/11/14004_5e2dd87114.jpg" alt="">
+            <img src="https://s2.azz.net/img/1200/2020/09/12/13/14004_a3e28599e7.jpg" alt="">
+        </div>
+    </div>
+
+    <script>
+        let img = $('.box>img');
+        let img1 = document.querySelectorAll('.box>img');
+        let screen = document.querySelector('.screen>img');
+        let body = document.querySelector('body');
+        for (let i = 0; i < img.length; i++) {
+            img[i].onclick = function(){
+                screen.src = this.src;
+                // body.style.cssText='background-image: url('+this.src+');'
+                body.style.cssText=`background-image: url(${this.src});`
+            }
+            
+        }
+    </script>
+</body>
+
+</html>

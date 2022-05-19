@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="publick.css">
+    <title>4.360 浏览器模块滑动</title>
+    <style>
+        ul{
+            margin: 100px auto;
+            width: 1240px;
+            height: 420px;
+            border-top: white solid 10px;
+            border-left: white solid 10px;
+        }
+        li{
+            overflow: hidden;
+            position: relative;
+            float: left;
+            width: 300px;
+            height: 200px;
+            border-right: white solid 10px;
+            border-bottom: white solid 10px;
+            background-repeat: no-repeat;
+            /* 背景不重复 */
+            background-position: center;
+            /* 背景定位 */
+            background-size: cover;
+            /* 使背景平铺到浏览器边框最大 */
+            background-image: url('https://s2.azz.net/img/1200/2020/11/01/11/14004_5e2dd87114.jpg');
+        }
+        .expand{
+            position: absolute;
+            bottom: -25px;
+            display: flex;
+            justify-content: center;
+            width: 100%;
+            height: 25px;
+            font-size: 20px;
+            background-color: rgba(0, 0, 0, 0.472);
+        }
+        .expand>img{
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            float: left;
+            display: block;
+            height: 20px;
+        }
+        .expand>p{
+            line-height: 25px;
+            float: left;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li>
+            <div class="expand">
+                <img src="https://s2.azz.net/img/1200/2020/11/01/11/14004_5e2dd87114.jpg" alt="">
+                <p>wlop精选图片</p>
+            </div>
+        </li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
+
+    <script>
+        let speed = 500;
+        $('li').html($('.expand'))
+        $('li').mouseenter(function(){
+            $('.expand').eq($(this).index()).stop().animate({bottom:0},speed)
+        })
+        $('li').mouseleave(function(){
+            $('.expand').eq($(this).index()).stop().animate({bottom:'-25px'},speed)
+        })
+    </script>
+</body>
+</html>

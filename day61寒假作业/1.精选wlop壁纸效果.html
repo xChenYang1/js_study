@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./publick.css">
+  <title>1.淘宝精选wlop壁纸效果</title>
+  <style>
+    p {
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    .wrap {
+      margin: 0 auto;
+      width: 706px;
+      height: 300px;
+
+    }
+
+    .tab {
+      width: 102px;
+      height: 300px;
+      float: left;
+    }
+
+    .tab>li {
+      width: 100px;
+      height: 100px;
+      background-repeat: no-repeat;
+      /* 背景不重复 */
+      background-position: center;
+      /* 背景定位 */
+      background-size: cover;
+      /* 使背景平铺到浏览器边框最大 */
+    }
+
+    .content {
+      float: left;
+      overflow: hidden;
+      position: relative;
+      width: 500px;
+      height: 306px;
+      display: flex;
+      /*主要是这个属性*/
+      align-items: center;
+      justify-content: center;
+    }
+
+    .content>li {
+
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      /* 背景不重复 */
+      background-position: center;
+      /* 背景定位 */
+      background-size: cover;
+      /* 使背景平铺到浏览器边框最大 */
+
+    }
+
+    li {
+      border: white 1px solid;
+    }
+
+    /* .content>li:nth-child(1) {
+      background-image: url("https://s11.snscz.com/s12/img/1200/2021/02/16/13/14004_33999adfed.jpg");
+    }
+
+    .content>li:nth-child(2) {
+      background-image: url("https://s11.snscz.com/s12/img/1200/2021/02/16/13/14004_4ffdefca14.jpg");
+    }
+
+    .content>li:nth-child(3) {
+      background-image: url("https://s11.snscz.com/s12/img/1200/2021/02/16/13/14004_c5d1640aea.jpg");
+    }
+
+    .content>li:nth-child(4) {
+      background-image: url("https://s11.snscz.com/s12/img/original/2021/02/02/14/14004_348b36ca38.jpg");
+    }
+
+    .content>li:nth-child(5) {
+      background-image: url("https://s11.snscz.com/s12/img/1200/2021/01/20/17/14004_565487adac.jpg");
+    }
+
+    .content>li:nth-child(6) {
+      background-image: url("https://s11.snscz.com/s12/img/1200/2021/01/11/12/14004_0967fce4e6.jpg");
+    } */
+  </style>
+</head>
+
+<body>
+
+  <div class="wrap">
+    <p>精选wlop壁纸效果</p>
+    <ul class="tab">
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <ul class="content">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <ul class="tab">
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+    let url = [
+      "https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/2_crown_8k.jpg",
+      "https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/8_LunarNewYear2_4k.jpg",
+      "https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/20_sky1_4k.jpg",
+      "https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/21_sky2_4k.jpg",
+      "https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/22_sky3_4k.jpg",
+      "https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/Jade-Wallpaper.jpg"
+    ]
+
+    for (let i = 0; i < $('.tab>li').length; i++) {
+      $('.tab>li').eq(i).css('background-image',`url(${url[i]})`)
+      
+    }
+    // for (let i = 0; i < $('.tab>li').length; i++) {
+    //   $('.tab>li').eq(i).css('background-image', `${$('.content>li').eq(i).css('background-image')}`)
+
+    // }
+    $('.tab>li').each(function (index, el) {
+      $('.tab>li').eq(index).mouseover(function () {
+        $('.content>li').css('background-image', `${$('.tab>li').eq(index).css('background-image')}`)
+      })
+    })
+    console.log($('.tab>li'));
+    console.log(Array.of($('.tab>li')));
+  </script>
+</body>
+
+</html>

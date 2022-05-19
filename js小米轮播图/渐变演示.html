@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        img {
+            width: 500px;
+            height: 400px;
+            opacity: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <img src="https://s11.snscz.com/s12/img/1200/2021/01/03/20/14004_605516b123.jpg" alt="">
+    <button>点击</button>
+    <script>
+        let img = document.querySelector('img'),
+            btn = document.querySelector('button');
+        // btn.onclick = function(){
+        //     let index = 0;
+        //     let anim = null;
+        //     clearInterval(anim)
+        //     anim = setInterval(function(){
+
+        //         index++
+        //         img.style.opacity = `${index/100}`;
+        //         if(img.style.opacity == 1){
+        //             clearInterval(anim)
+        //         }
+        //     },8)
+        // }
+        btn.onclick = function () {
+
+            fun(img, 1000)
+        }
+        function fun(element, time) {
+            this.index = 0;
+            // let index1 = 0;
+            let anim = null;
+            clearInterval(anim);
+            // let anim1 = null;
+            anim = setInterval(function () {
+
+                this.index++;
+                element.style.opacity = `${this.index / 100}`;
+                console.log(element.style.opacity);
+                if (element.style.opacity >= 1) {
+                    clearInterval(anim)
+                }
+            }, `${time / 100}`)
+            // 下面没啥用 只是测试时间的计时器
+            //     anim1 = setInterval(function(){
+
+            //         index1++;
+            //         console.log(`现在是${index1}`);
+            //         if(element.style.opacity == 1){
+            //             clearInterval(anim1)
+            //         }
+            //     },1000)
+        }
+    </script>
+</body>
+
+</html>

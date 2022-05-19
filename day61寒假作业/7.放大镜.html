@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./publick.css">
+    <style>
+        body {
+            width: 100%;
+            background-color: black;
+        }
+
+        .wrap {
+            /* position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%); */
+            margin: 100px 100px;
+            width: 800px;
+            height: 300px;
+        }
+
+        .box {
+            cursor: move;
+
+            position: relative;
+            float: left;
+            width: 300px;
+            height: 300px;
+            background-color: pink;
+            /* margin: 100px; */
+        }
+
+        .boxImg {
+            z-index: 0;
+            position: absolute;
+            width: 300px;
+            height: 300px;
+        }
+
+        .hide {
+            display: none;
+            position: absolute;
+            z-index: 10;
+            width: 150px;
+            height: 150px;
+            background-color: rgba(255, 255, 255, 0.507);
+        }
+
+
+        .disbox {
+            overflow: hidden;
+            display: none;
+            float: left;
+            width: 300px;
+            height: 300px;
+            background-color: aqua;
+        }
+
+        .bigImg {
+            width: 600px;
+            height: 600px;
+        }
+
+        p {
+            color: white;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="box">
+            <img class="boxImg" src="https://s2.azz.net/img/original/2019/04/01/13/14004_8b9cccc64a.jpg" alt="">
+            <div class="hide"></div>
+        </div>
+        <div class="disbox">
+            <img class="bigImg" src="https://s2.azz.net/img/original/2019/04/01/13/14004_8b9cccc64a.jpg" alt="">
+        </div>
+
+    </div>
+    <div>
+        <p id="P1"></p>
+        <p id="P2"></p>
+
+    </div>
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(function () {
+            //核心思想： 让鼠标在在屏幕中的坐标减去  盒子距离页面上面的距离和左面的距离 offset().top和offset().left
+            $("body,html").mousemove(function (e) {
+                // hide距离box左上角的距离
+                // 获取hide距离left的距离x 等于 鼠标在页面上的坐标 减去 盒子在页面上的坐标 减去 hide的width的一般的距离除以2（为了让鼠标显示在盒子中间）
+                this.x = e.pageX - $(".box").offset().left - $('.hide').width() / 2;
+                this.y = e.pageY - $(".box").offset().top - $('.hide').height() / 2;
+                // hide的x轴位移
+                // 当 hide移到右边界时
+                if (this.x > $('.box').width() - $('.hide').width()) {
+                    this.x = $('.box').width() - $('.hide').width();
+                    // 当 hide移到左边界时
+                } else if (this.x < 0) {
+                    // 靠着边界
+                    this.x = 0;
+                }
+                // hide的y轴位移
+                if (this.y > $('.box').height() - $('.hide').height()) {
+                    this.y = $('.box').height() - $('.hide').height();
+                } else if (this.y < 0) {
+                    this.y = 0;
+                }
+                $('.hide').css({ 'left': this.x, 'top': this.y })
+                $('.bigImg').css({ 'marginLeft': -this.x * 2, 'marginTop': -this.y * 2 })
+            })
+            $('.box').mouseenter(function () {
+                $('.disbox,.hide').show();
+            })
+            $('.box').mouseleave(function () {
+                $('.disbox,.hide').hide()
+            })
+        })
+    </script>
+</body>
+
+</html>

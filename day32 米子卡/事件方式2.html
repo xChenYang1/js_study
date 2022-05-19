@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value = "团队协作" id ="btn">
+    <script src="publick.js"></script>
+    <script>
+        //事件源.addEvemtlistener("事件类型"，事件处理函数，flase)
+        my$("btn").addEventListener("click",function(){
+            console.log("大家好");
+        },false);
+        my$("btn").addEventListener("click",function(){
+            console.log("大家好1");
+        },false);
+        my$("btn").addEventListener("click",function(){
+            console.log("大家好2");
+        },false);
+    </script>
+</body>
+</html>

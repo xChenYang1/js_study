@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="publick.css">
+  <title>5.手风琴效果</title>
+  <style>
+    .wrap {
+      margin: 100px auto;
+      width: 1200px;
+      height: 400px;
+
+    }
+
+    li {
+      overflow: hidden;
+      float: left;
+      width: 200px;
+      height: 400px;
+      background-color: aqua;
+
+      background-repeat: no-repeat;
+      /* 背景不重复 */
+      /* background-position: center; */
+      /* 背景定位 */
+      background-size: cover;
+      /* 使背景平铺到浏览器边框最大 */
+      margin-left: -1px;
+    }
+  </style>
+</head>
+
+<body>
+  <ul class="wrap">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+  </ul>
+  <!-- <script src='https://code.jquery.com/jquery-3.5.1.min.js'></script> -->
+  <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script>
+
+    let url = [
+      "https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/2_crown_8k.jpg",
+      "https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/8_LunarNewYear2_4k.jpg",
+      "https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/20_sky1_4k.jpg",
+      "https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/21_sky2_4k.jpg",
+      "https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/22_sky3_4k.jpg",
+      "https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/Jade-Wallpaper.jpg"
+    ];
+    let speed = 500
+    $('li').each(function (index, el) {
+      $(this).css('background-image', `url(${url[index]})`)
+
+    })
+    $('li').mouseenter(function () {
+      // $('li')
+      $(this).stop().animate({ width: '800px' }, speed).siblings().stop().animate({ width: '80px' }, speed)
+    })
+    $('li').mouseleave(function () {
+      $('li').stop().animate({ width: '200px' }, speed)
+    })
+  </script>
+</body>
+
+</html>

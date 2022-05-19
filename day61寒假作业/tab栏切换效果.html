@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="publick.css">
+    <title>tab栏切换效果</title>
+    <style>
+        body {
+            user-select: none;
+        }
+        .box{
+            margin: 0 auto;
+            width: 300px;
+        }
+        .tab {
+            position: relative;
+            z-index: 10;
+            cursor: pointer;
+
+            width: 300px;
+            height: 50px;
+            text-align: center;
+            font-size: 50px;
+            line-height: 50px;
+        }
+
+        .tab>li {
+
+            width: 100px;
+            height: 50px;
+            float: left;
+            background-color: rgba(255, 255, 255, 0.486);
+        }
+
+        .wrap {
+            /* overflow: hidden; */
+            position: relative;
+            width: 300px;
+            height: 500px;
+            background-color: aqua;
+            text-align: center;
+            font-size: 500px;
+            line-height: 500px;
+        }
+
+        .wrap>li {
+            position: absolute;
+            width: 300px;
+            height: 500px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <ul class="tab">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+        <ul class="wrap">
+
+            <li style="display: block;">1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
+    </div>
+    <script>
+        let li = document.querySelectorAll('.wrap>li');
+        let Tli = document.querySelectorAll('.tab>li');
+
+        for (let i = 0; i < li.length; i++) {
+            Tli[i].onclick = function () {
+                for (let j = 0; j < li.length; j++) {
+                    li[j].style.cssText = `display: none;`
+
+                }
+                li[i].style.cssText = `display: block;`
+            }
+
+        }
+        console.log(li);
+    </script>
+</body>
+
+</html>

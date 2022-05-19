@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="绑定事件" id="btn1">
+    <input type="button" value="解绑事件" id="btn2">
+    <script src="publick.js"></script>
+    <script>
+        my$("btn1").onclick = function(){
+            console.log("我是事件");
+        }
+        my$("btn2").onclick = function(){
+            my$("btn1").onclick = null;
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+"https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/2_crown_8k.jpg",
+"https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/8_LunarNewYear2_4k.jpg",
+"https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/20_sky1_4k.jpg",
+"https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/21_sky2_4k.jpg",
+"https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/22_sky3_4k.jpg",
+"https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/2_crown_8k.jpg"

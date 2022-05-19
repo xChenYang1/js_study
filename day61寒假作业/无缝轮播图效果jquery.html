@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="publick.css">
+    <title>无缝轮播图效果</title>
+    <style>
+        .wrap {
+            position: relative;
+            margin: 0 auto;
+            width: 500px;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        .wrap>.box {
+            position: absolute;
+            width: 3000px;
+            height: 300px;
+        }
+
+        .wrap>.box>img {
+            float: left;
+            width: 500px;
+            height: 300px;
+        }
+
+        .tab {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            bottom: 10px;
+            width: 300px;
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .tab>li {
+            cursor: pointer;
+            width: 20px;
+            height: 20px;
+            border-radius: 50px;
+            background-color: rgba(255, 255, 255, 0.493);
+        }
+
+        .left,
+        .right {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 30px;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 30px;
+            background-color: rgba(255, 255, 255, 0.479);
+            color: black;
+        }
+
+        .right {
+            right: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <div class="box">
+            <img src="https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/2_crown_8k.jpg" alt="">
+            <img src="https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/8_LunarNewYear2_4k.jpg" alt="">
+            <img src="https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/20_sky1_4k.jpg" alt="">
+            <img src="https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/21_sky2_4k.jpg" alt="">
+            <img src="https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/22_sky3_4k.jpg" alt="">
+            <img src="https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/2_crown_8k.jpg" alt="">
+
+        </div>
+        <ul class="tab">
+            <li style="background-color: white;"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <div class="left">&lt;</div>
+        <div class="right">&gt;</div>
+
+    </div>
+    <script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
+    <script>
+        let index = 0
+        $('.right').click(function () {
+            if (index == $('img').length - 1) {
+                index = 0;
+                $('.box').css('left', '0')
+            }
+            index++;
+            $('.box').stop().animate({ left: `${-index * 500}px` }, 300);
+            if (index == $('img').length - 1) {
+                $('.tab>li').eq(0).css('background', 'white').siblings().css('background', 'rgba(255, 255, 255, 0.479)')
+            } else {
+                $('.tab>li').eq(index).css('background', 'white').siblings().css('background', 'rgba(255, 255, 255, 0.479)')
+            }
+        })
+        $('.left').click(function () {
+            if (index == 0) {
+                index = 5;
+                $('.box').css('left', `${-2500}px`)
+            }
+            index--;
+            $('.box').stop().animate({ left: `${-index * 500}px` }, 300)
+
+            $('.tab>li').eq(index).css('background', 'white').siblings().css('background', 'rgba(255, 255, 255, 0.479)')
+
+        })
+        $('.tab>li').click(function () {
+            index = $(this).index();
+            $('.box').stop().animate({ left: `${-$(this).index() * 500}px` }, 300)
+            $('.tab>li').eq(index).css('background', 'white').siblings().css('background', 'rgba(255, 255, 255, 0.479)')
+        })
+        let anim = setInterval(move, 3000)
+        function move() {
+            clearInterval(anim)
+            if (index == $('img').length - 1) {
+                index = 0;
+                $('.box').css('left', '0')
+            }
+            index++;
+            $('.box').stop().animate({ left: `${-index * 500}px` }, 300);
+            if (index == $('img').length - 1) {
+                $('.tab>li').eq(0).css('background', 'white').siblings().css('background', 'rgba(255, 255, 255, 0.479)')
+            } else {
+                $('.tab>li').eq(index).css('background', 'white').siblings().css('background', 'rgba(255, 255, 255, 0.479)')
+            }
+        }
+        $('.wrap').mouseenter(function () {
+            clearInterval(anim)
+        });
+        $('.wrap').mouseleave(function () {
+            anim = setInterval(move, 3000)
+        })
+    </script>
+</body>
+
+</html>

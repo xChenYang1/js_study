@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>一年中过了几天</title>
+</head>
+
+<body>
+    <script>
+        // 创建月份数据数组
+        let arr = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        // 函数执行
+        function day(year, month, day) {
+            let sum = 0;
+            if (month <= 2 && day <= 28) {
+                play(month)
+                return sum + day
+            } else {
+                if (Fyear(year)) {
+                    play(month)
+                    return sum + day + 1
+                } else {
+                    play(month)
+                }
+                return sum + day
+            }
+            // 判断是否为闰年
+            function Fyear(x) {
+                if (x % 4 == 0 && x % 100 != 0 || x % 400 == 0) {
+                    return true
+                } else {
+                    return false
+                }
+            }
+            // 执行计算
+            function play(x) {
+                for (let i = 0; i < x - 1; i++) {
+                    sum += arr[i];
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./publick.css">
+  <title>1.淘宝精选wlop壁纸效果</title>
+  <style>
+    p {
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    .wrap {
+      margin: 0 auto;
+      width: 706px;
+      height: 350px;
+
+    }
+
+    .tab {
+      width: 102px;
+      height: 300px;
+      float: left;
+    }
+
+    .tab>li {
+      width: 100px;
+      height: 98px;
+      background-repeat: no-repeat;
+      /* 背景不重复 */
+      background-position: center;
+      /* 背景定位 */
+      background-size: cover;
+      /* 使背景平铺到浏览器边框最大 */
+    }
+
+    .content {
+      float: left;
+      overflow: hidden;
+      position: relative;
+      width: 500px;
+      height: 300px;
+      display: flex;
+      /*主要是这个属性*/
+      align-items: center;
+      justify-content: center;
+    }
+
+    .content>li {
+
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      /* 背景不重复 */
+      background-position: center;
+      /* 背景定位 */
+      background-size: cover;
+      /* 使背景平铺到浏览器边框最大 */
+
+    }
+
+    li {
+      border: white 1px solid;
+    }
+
+    /* .content>li:nth-child(1) {
+            background-image: url("https://s11.snscz.com/s12/img/1200/2021/02/16/13/14004_33999adfed.jpg");
+        }
+
+        .content>li:nth-child(2) {
+            background-image: url("https://s11.snscz.com/s12/img/1200/2021/02/16/13/14004_4ffdefca14.jpg");
+        }
+
+        .content>li:nth-child(3) {
+            background-image: url("https://s11.snscz.com/s12/img/1200/2021/02/16/13/14004_c5d1640aea.jpg");
+        }
+
+        .content>li:nth-child(4) {
+            background-image: url("https://s11.snscz.com/s12/img/original/2021/02/02/14/14004_348b36ca38.jpg");
+        }
+
+        .content>li:nth-child(5) {
+            background-image: url("https://s11.snscz.com/s12/img/1200/2021/01/20/17/14004_565487adac.jpg");
+        }
+
+        .content>li:nth-child(6) {
+            background-image: url("https://s11.snscz.com/s12/img/1200/2021/01/11/12/14004_0967fce4e6.jpg");
+        } */
+
+    .hide {
+      display: none;
+      position: absolute;
+      z-index: 10;
+      width: 250px;
+      height: 150px;
+      background-color: rgba(255, 255, 255, 0.507);
+    }
+
+    .disbox {
+      display: none;
+      overflow: hidden;
+      margin: 0 auto;
+      width: 500px;
+      height: 300px;
+      background-color: aqua;
+    }
+
+    .bigImg {
+      /* width: 1000px; */
+      height: 600px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="wrap">
+    <p>精选wlop壁纸效果</p>
+    <ul class="tab">
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+    <ul class="content">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <div class="hide"></div>
+    </ul>
+    <ul class="tab">
+      <li></li>
+      <li></li>
+      <li></li>
+    </ul>
+  </div>
+  <div class="disbox">
+    <img class="bigImg" src="https://s11.snscz.com/s12/img/1200/2021/01/11/12/14004_0967fce4e6.jpg" alt="">
+  </div>
+  <script src='https://code.jquery.com/jquery-3.5.1.min.js'></script>
+  <script>
+    let url = [
+      "https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/2_crown_8k.jpg",
+      "https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/8_LunarNewYear2_4k.jpg",
+      "https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/20_sky1_4k.jpg",
+      "https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/21_sky2_4k.jpg",
+      "https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/22_sky3_4k.jpg",
+      "https://cdn.jsdelivr.net/gh/xChenYang1/lotsof@1.112/image/2_crown_8k.jpg"
+    ];
+    for (let i = 0; i < $('.content>li').length; i++) {
+      $('.content>li').eq(i).css('background-image', `url(${url[i]})`)
+    }
+    for (let i = 0; i < $('.tab>li').length; i++) {
+      $('.tab>li').eq(i).css('background-image', `${$('.content>li').eq(i).css('background-image')}`)
+      $('.tab>li').eq(i).mouseover(function () {
+        $('.content>li').css('background-image', `${$('.tab>li').eq(i).css('background-image')}`)
+        $('.bigImg').attr('src', url[i])
+      })
+    }
+    // $('.tab>li').each(function (index, el) {
+    //     $('.tab>li').eq(index).mouseover(function () {
+    //         $('.content>li').css('background-image', `${$('.tab>li').eq(index).css('background-image')}`)
+    //     })
+    // })
+    //核心思想： 让鼠标在在屏幕中的坐标减去  盒子距离页面上面的距离和左面的距离 offset().top和offset().left
+    $("body,html").mousemove(function (e) {
+      // hide距离box左上角的距离
+      // 获取hide距离left的距离x 等于 鼠标在页面上的坐标 减去 盒子在页面上的坐标 减去 hide的width的一般的距离除以2（为了让鼠标显示在盒子中间）
+      this.x = e.pageX - $(".content").offset().left - $('.hide').width() / 2;
+      this.y = e.pageY - $(".content").offset().top - $('.hide').height() / 2;
+      // hide的x轴位移
+      // 当 hide移到右边界时
+      if (this.x > $('.content').width() - $('.hide').width()) {
+        this.x = $('.content').width() - $('.hide').width();
+        // 当 hide移到左边界时
+      } else if (this.x < 0) {
+        // 靠着边界
+        this.x = 0;
+      }
+      // hide的y轴位移
+      if (this.y > $('.content').height() - $('.hide').height()) {
+        this.y = $('.content').height() - $('.hide').height();
+      } else if (this.y < 0) {
+        this.y = 0;
+      }
+      $('.hide').css({ 'left': this.x, 'top': this.y })
+      $('.bigImg').css({ 'marginLeft': -this.x * 2, 'marginTop': -this.y * 2 })
+    })
+    $('.content').mouseenter(function () {
+      $('.disbox,.hide').show();
+    })
+    $('.content').mouseleave(function () {
+      $('.disbox,.hide').hide()
+    })
+  </script>
+</body>
+
+</html>
